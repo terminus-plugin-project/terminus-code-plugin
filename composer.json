@@ -1,0 +1,54 @@
+{
+    "name": "terminus-plugin-project/terminus-code-plugin",
+    "description": "Code - A Terminus plugin to clone the code from any available Pantheon site environment to your local system.",
+    "authors": [
+        {
+            "name": "Ed Reel",
+            "email": "edreel@gmail.com",
+            "homepage": "https://github.com/uberhacker",
+            "role": "Developer"
+        }
+    ],
+    "type": "terminus-plugin",
+    "keywords": [
+        "pantheon",
+        "terminus",
+        "code",
+        "plugin"
+    ],
+    "support": {
+        "issues": "https://github.com/terminus-plugin-project/terminus-code-plugin/issues"
+    },
+    "license": "MIT",
+    "require": {
+        "php": "^5.5 || ^7.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.7"
+    },
+    "scripts": {
+        "install-bats": "if [ ! -f bin/bats ] ; then git clone https://github.com/sstephenson/bats.git; mkdir -p bin; bats/install.sh .; fi",
+        "bats": "TERMINUS_PLUGINS_DIR=.. bin/bats tests",
+        "cs": "phpcs --standard=PSR2 -n src",
+        "cbf": "phpcbf --standard=PSR2 -n src",
+        "confirm-install": "bin/bats tests/functional/confirm-install.bats",
+        "test-output": "bin/bats tests/functional/test-output.bats",
+        "cleanup": "if [ -d $TERMINUS_SITE ]; then rm -rf $TERMINUS_SITE; fi",
+        "test": [
+            "@install-bats",
+            "@bats",
+            "@cs",
+            "@confirm-install",
+            "@test-output",
+            "@cleanup"
+        ]
+    },
+    "autoload": {
+        "psr-4": { "TerminusPluginProject\\TerminusCode\\": "src" }
+    },
+    "extra": {
+        "terminus": {
+            "compatible-version": "^1"
+        }
+    }
+}

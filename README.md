@@ -23,7 +23,19 @@ terminus code my-site.dev
 Learn more about [Terminus](https://pantheon.io/docs/terminus/) and [Terminus Plugins](https://pantheon.io/docs/terminus/plugins/).
 
 ## Installation:
-For installation help, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/).
+
+To install this plugin using Terminus 3:
+```
+terminus self:plugin:install terminus-plugin-project/terminus-code-plugin
+```
+
+On older versions of Terminus:
+```
+mkdir -p ~/.terminus/plugins
+composer create-project --no-dev -d ~/.terminus/plugins terminus-plugin-project/terminus-code-plugin
+```
+
+For help installing, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/).
 
 ```
 mkdir -p ~/.terminus/plugins
